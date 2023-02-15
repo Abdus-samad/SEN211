@@ -32,10 +32,12 @@ const BooksList = () => {
   const fetchBooks = async () => {
     const { books } = await BackendApi.book.getAllBooks();
     setBooks(books);
+    console.log(books)
   };
   const fetchUserBook = async () => {
     const { books } = await BackendApi.user.getBorrowBook()
     setBorrowedBook(books)
+    console.log("borrow", books)
   }
   useEffect(() => {
     fetchBooks().catch(console.error);
@@ -90,7 +92,7 @@ const BooksList = () => {
                       <TableCell align="right">
                         {book?.availableQuantity}
                       </TableCell>
-                      <TableCell align="right">{`$${book.price}`}</TableCell>
+                      <TableCell align="right">{`${book.price}`}</TableCell>
                       <TableCell>
                         <div className={"actionsContainer"}>
                           <Button
